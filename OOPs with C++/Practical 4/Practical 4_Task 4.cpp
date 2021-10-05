@@ -21,7 +21,7 @@ namespace second
 }
 
 using namespace first;
-//using namespace second;
+
 
 int main()
 {
