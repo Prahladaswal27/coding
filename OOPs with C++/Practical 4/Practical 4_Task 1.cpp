@@ -25,7 +25,11 @@ int main()
 {
   int sum;
   float a;
-  sum= fir::
+  sum= first::add(3,3);
+  a= second::add(3.6,7.8);
+  
+  cout<<"\nSum is: "<<sum;
+  cour<<"\nADD is:
 
 
 
