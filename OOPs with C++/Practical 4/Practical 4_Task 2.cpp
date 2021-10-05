@@ -3,19 +3,22 @@
 
 using namespace std;
 
-namespace first 
+namespace first
 
 {
-
-  int add(int a,int b)
-
-  {
-
-    return (a+b);
-
-  }
-
+   int add(int a,int b)
+   {
+     return (a+b);
+   }
 }
+
+  
+
+    
+
+  
+
+
 
 namespace second
 
