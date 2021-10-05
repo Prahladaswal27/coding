@@ -25,19 +25,26 @@ using namespace first;
 
 int main()
 {
-   int sum;
-   float a;
+   cout<<"\nSum is: "<<add(3,3);
+
+   cout<<"\nADD is: "<<add(3.6,7.8)<<endl;
+
    
-   sum= first::add(3,3);
-   a= second::add(3.6,7.8);
-   
-   cout<<"\nSum is: "<<sum;
-   cout<<"\nADD is: "<<a;
-   
+
    //cout<<"\naddition of two is: "<<add(3,4.7f);
+
    
+
    return 0;
+
 }
+
+
+   
+
+
+   
+   
 
 
 
