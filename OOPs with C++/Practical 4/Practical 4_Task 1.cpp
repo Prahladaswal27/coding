@@ -29,7 +29,13 @@ int main()
   a= second::add(3.6,7.8);
   
   cout<<"\nSum is: "<<sum;
-  cout<<"\nADD is:
+  cout<<"\nADD is: "<<a;
+  
+  //cout<<"\naddition of two is: "<<add(3,4.7f);
+  
+  return 0;
+  
+}
 
 
 
