@@ -4,7 +4,6 @@
 using namespace std;
 
 namespace first
-
 {
    int add(int a,int b)
    {
@@ -29,14 +28,9 @@ int main()
 
    cout<<"\nADD is: "<<add(3.6,7.8)<<endl;
 
-   
-
    //cout<<"\naddition of two is: "<<add(3,4.7f);
 
-   
-
    return 0;
-
 }
 
 
