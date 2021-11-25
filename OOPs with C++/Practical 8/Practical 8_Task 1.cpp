@@ -4,12 +4,13 @@ using namespace std;
 
 int main()
 {
-    int *p={10,20,20};
+    int arr[]={10,20,30};
+    cout<<*arr<<endl;
     
-    cout<<*p<<endl;
+    cout<<arr;
+    arr++;
     
-    p++;
-    cout<<*p;
+    cout<<*arr;
     
     return 0;
     
