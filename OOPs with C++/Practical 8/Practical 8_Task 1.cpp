@@ -10,7 +10,8 @@ int main()
     
     p++;
     cout<<*p;
-    
+
+
     return 0;
     
 }
