@@ -10,6 +10,6 @@ int main()
   
   multi=a*b;
   
-  cout<<"Multiplication of two no. is : "<<multi;
+  cout<<"\nMultiplication of two no. is : "<<multi<<endl;
   return 0;
 }
