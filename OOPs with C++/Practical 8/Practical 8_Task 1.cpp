@@ -4,10 +4,13 @@ using namespace std;
 
 int main()
 {
-    int *p = {10,20,20};
-    cout << *p;
+    int *p={10,20,20};
+    
+    cout<<*p<<endl;
+    
     p++;
-    cout << *p;
+    cout<<*p;
+    
     return 0;
-  
+    
 }
