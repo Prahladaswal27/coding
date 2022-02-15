@@ -1,4 +1,3 @@
-
 #include <iostream>
 using namespace std;
 
@@ -28,7 +27,8 @@ class D : public B, public C
 public:
     void display_D()
     {
-        cout << "k of B and C inherited in D = " << B::k << " " << C::k << endl;
+        cout << "\nk of B and C inherited in D = " << B::k << " and " << C::k;
+        cout<<"\n"<<endl;
     }
 };
 
