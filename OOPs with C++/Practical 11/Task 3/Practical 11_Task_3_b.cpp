@@ -1,4 +1,3 @@
-
 #include <iostream>
 using namespace std;
 class A
@@ -36,7 +35,8 @@ public:
     void displayD()
     {
 
-        cout << "k in D= " << k << endl;
+        cout << "\nk in D = " << k;
+        cout<<"\n"<<endl;
     }
 };
 int main()
