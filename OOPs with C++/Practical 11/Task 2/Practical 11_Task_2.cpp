@@ -1,4 +1,3 @@
-
 #include <iostream>
 using namespace std;
 
@@ -7,7 +6,7 @@ class MarrineAnimals
     public:
     void display_MA()
     {
-        cout << "I am Marrine Animal" << endl;
+        cout << "\nI am Marrine Animal" << endl;
     }
 };
 class Mammals
@@ -15,7 +14,7 @@ class Mammals
     public:
     void display_M()
     {
-        cout << "I am Mammal" << endl;
+        cout << "\nI am Mammal" << endl;
     }
 };
 
@@ -24,7 +23,7 @@ class BlueWhale : public MarrineAnimals, public Mammals
     public:
     void display_B()
     {
-        cout << "I belong to both categories Mammals as well as Marine Animals" << endl;
+        cout << "\nI belong to both categories Mammals as well as Marine Animals" << endl;
     }
 };
 
