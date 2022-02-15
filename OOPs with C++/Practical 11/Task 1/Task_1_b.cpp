@@ -1,4 +1,3 @@
-
 #include <iostream>
 using namespace std;
 
@@ -7,7 +6,7 @@ class Parent
     public:
     void display_Parent()
     {
-        cout << "Class Parent method called " << endl;
+        cout << "\nClass Parent method called\n" << endl;
     }
 };
 class Child : public Parent
@@ -15,7 +14,7 @@ class Child : public Parent
     public:
     void display_Child()
     {
-        cout << "Called class Parent method from class Child method" << endl;
+        cout << "\nCalled class Parent method from class Child method\n" << endl;
         display_Parent();
     }
 };
