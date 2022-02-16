@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <string>
 using namespace std;
@@ -40,17 +39,17 @@ public:
 int main()
 {
     Child obj2;
-    cout << "With using " << endl
+    cout << "\nWith using " << endl
          << "............."<<endl;
 
-    int ans1 = obj2.add(1, 2);
+    int ans1 = obj2.add(15, 25);
     cout<< ans1 << endl;
 
-    float ans2 = obj2.add(5.5f, 2.15f);
+    float ans2 = obj2.add(8.5f, 3.15f);
     cout<< ans2 << endl;
 
     string ans3 = obj2.add('a', 'b');
-    cout<<ans3;
+    cout<<ans3<<"\n"<<endl;
 
     return 0;
 }
