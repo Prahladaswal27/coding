@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <string>
 using namespace std;
@@ -37,7 +36,7 @@ int main()
     ptr = &c;
     cout << endl
          << "Abstraction was in the Base class in the Above implementation and not in the Derived" << endl
-         << "class because pure virtual func of Base was defined in Derived class" << endl;
+         << "class because pure virtual func of Base was defined in Derived class\n" << endl;
 
     return 0;
 }
