@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <string>
 using namespace std;
@@ -33,7 +32,7 @@ int main()
     Base *ptr;
     Derived c;
     ptr = &c;
-    cout << ptr->add(1, 2);
+    cout << ptr->add(1, 2)<<"\n"<<endl;
 
     return 0;
 }
