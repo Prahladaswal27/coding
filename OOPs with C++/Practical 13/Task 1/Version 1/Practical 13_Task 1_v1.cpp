@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <string>
 using namespace std;
@@ -41,10 +40,10 @@ int main()
     Base obj1;
     Derived obj2;
     
-    int ans1 = obj1.add(1, 2);
+    int ans1 = obj1.add(15, 25);
     cout << "\nOverriding func called from Base class= " << ans1 << endl;
 
-    int ans2 = obj2.add(1, 2);
+    int ans2 = obj2.add(15, 25);
     cout<<"\noverriding fun called from Derived class= " << ans2;
 
     return 0;
