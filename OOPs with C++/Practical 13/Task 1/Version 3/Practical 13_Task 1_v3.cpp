@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <string>
 using namespace std;
@@ -40,14 +39,14 @@ public:
 int main()
 {
     Derived obj2;
-    cout << "without using  " << endl
+    cout << "\nWithout using  " << endl
         <<"..........."<<endl;
 
-    int ans1 = obj2.add(1, 2);
+    int ans1 = obj2.add(15, 25);
     cout<<ans1;
 
-    float ans2 = obj2.add(5.5f, 2.15f);
-    cout<<ans2;
+    float ans2 = obj2.add(8.5f, 3.15f);
+    cout<<ans2<<"\n"<<endl;
 
     return 0;
         
