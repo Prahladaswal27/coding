@@ -1,5 +1,4 @@
 
-// using first namespace
 // #include <iostream>
 // using namespace std;
 
