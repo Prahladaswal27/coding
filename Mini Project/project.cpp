@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <conio.h>
 #include <fstream>
@@ -7,17 +6,14 @@
 
 using namespace std;
 
-class bill // bill class to declare all data members and methods used in program
+class sell
 {
-private:
-    int code; // data memebers used in program, all are private
+protected:
+    int code; // data memebers of class sell, all are protected
     float price, discount;
     string name;
 
-public:          // All methods used in program
-    void menu(); //All the function that performed in supermarket
-    void admin();
-    void customer();
+public:
     void add();
     void search();
     void edit();
@@ -25,12 +21,35 @@ public:          // All methods used in program
     void show();
     void list();
     void invoice();
+    int is_emp();
 };
 
-void bill::menu() // Menu method defintion of class bill
+class supermarket : public sell // Inheritance
+{
+
+public:
+    void menu();
+    void admin();
+    void customer();
+};
+
+int sell ::is_emp()
+{
+    char ch;
+    cout << "\n\n Is customer a employee: ";
+    cin >> ch;
+
+    if (ch == 'Y' || ch == 'y')
+        return 1;
+
+    else
+        return 0;
+}
+
+void supermarket::menu() // Menu method defintion of class bill
 {
 x:
-    system("cls");
+    system("cls");  // for clear console screen
     int choice;
     char ch;
 
@@ -48,11 +67,12 @@ x:
     switch (choice)
     {
     case 1:
+        ptr:
         system("cls");
         cout << "\n\n****************************************************************************************";
         cout << "\n\n\t\t\t\t Login System"; // Login system of shop for admin only
         cout << "\n\n****************************************************************************************";
-        cout << "\n\n E-mail: ";
+        cout << "\n\n E-mail ID: ";
         cin >> email;
 
         cout << "\n\n Password: ";
@@ -78,6 +98,8 @@ x:
             if (i > 15)
             {
                 cout << "\n\n Password must be between 8 to 15 characters";
+                getch();
+                goto ptr;
             }
         }
 
@@ -88,6 +110,8 @@ x:
         else
         {
             cout << "\n\n Invalid E-mail and Password";
+            getch();
+            goto ptr;
         }
         break;
 
@@ -116,7 +140,7 @@ x:
     goto x;
 }
 
-void bill::admin() // admin function definition of class bill
+void supermarket::admin() // admin function definition of class bill
 {
 x:
     system("cls");
@@ -141,10 +165,10 @@ x:
         add(); // add function call for adding the product in shop list
         break;
     case 2:
-        search(); // search function call for searching specific product details
+         edit(); // edit function call for edit the details of specific product
         break;
     case 3:
-        edit(); // edit function call for edit the details of specific product
+         search(); // search function call for searching specific product details
         break;
     case 4:
         del(); // delete function call for deleting the specific product from the list of product
@@ -163,7 +187,7 @@ x:
     goto x;
 }
 
-void bill::customer() // customer function definiton of class bill
+void supermarket::customer() // customer function definiton of class bill
 {
 x:
     system("cls");
@@ -193,10 +217,10 @@ x:
     goto x;
 }
 
-void bill::add()                 //add functions of class bill
-{                                
-x:                              // add product in shop list  
- system("cls");
+void sell ::add() //add functions of class bill
+{
+x: // add product in shop list
+    system("cls");
 
     fstream file;
     int c, found = 0;
@@ -216,24 +240,24 @@ x:                              // add product in shop list
     cout << "\n\n Discount in %: ";
     cin >> discount;
 
-    file.open("product.txt", ios::in);
+    file.open("PRODUCT_STORE.txt", ios::in);
     if (!file)
     {
-        file.open("product.txt", ios::app | ios::out);
+        file.open("PRODUCT_STORE.txt", ios::app | ios::out);
         file << " " << code << "\t\t" << setw(30) << left << name << setw(30) << price << setw(30) << discount << "\n";
         file.close();
     }
 
     else
     {
-        file >> c >> n >> p >> d;       // read from file
+        file >> c >> n >> p >> d; // read from file
         while (!file.eof())
         {
             if (c == code || n == name)
             {
                 found++;
             }
-            file >> c >> n >> p >> d;     // read from file
+            file >> c >> n >> p >> d; // read from file
         }
 
         file.close();
@@ -246,7 +270,7 @@ x:                              // add product in shop list
 
         else
         {
-            file.open("product.txt", ios::app | ios::out);
+            file.open("PRODUCT_STORE.txt", ios::app | ios::out);
             // write in file
             file << " " << code << "\t\t" << setw(30) << left << name << setw(30) << price << setw(30) << discount << "\n";
             file.close();
@@ -256,8 +280,8 @@ x:                              // add product in shop list
     cout << "\n\n\t\t Record Inserted Successfully...";
 }
 
-void bill::search()            // search function of class bill
-{                              // search any product details from the shop list
+void sell ::search() // search function of class bill
+{                    // search any product details from the shop list
     system("cls");
     fstream file;
 
@@ -266,7 +290,7 @@ void bill::search()            // search function of class bill
     cout << "\n\n\t\t\t Enter Product code you want to search: ";
     cin >> p_c;
 
-    file.open("product.txt", ios::in);
+    file.open("PRODUCT_STORE.txt", ios::in);
     if (!file)
     {
         cout << "\n\n File opening error...";
@@ -297,7 +321,7 @@ void bill::search()            // search function of class bill
     }
 }
 
-void bill::edit()
+void sell ::edit()
 {
     system("cls");
     fstream file, file1;
@@ -311,7 +335,7 @@ void bill::edit()
     // cout << "\n\n****************************************************************************************";
     cout << "\n\n\n\t\t\t Products List";
     cout << "\n\n****************************************************************************************";
-    file.open("product.txt", ios::in);
+    file.open("PRODUCT_STORE.txt", ios::in);
     if (!file)
     {
         cout << "\n\n File opening error";
@@ -333,7 +357,7 @@ void bill::edit()
     cout << "\n\n Enter Product code you want to edit: ";
     cin >> p_c;
 
-    file.open("product.txt", ios::in);
+    file.open("PRODUCT_STORE.txt", ios::in);
     if (!file)
     {
         cout << "\n\n File opening error...";
@@ -341,7 +365,7 @@ void bill::edit()
 
     else
     {
-        file1.open("product1.txt", ios::app | ios::out);
+        file1.open("PRODUCT1_STORE.txt", ios::app | ios::out);
         file >> code >> name >> price >> discount;
         while (!file.eof())
         {
@@ -356,7 +380,7 @@ void bill::edit()
                 cin >> p;
                 cout << "\n\n Enter New Discount in %: ";
                 cin >> d;
-                 file1 << " " << c << "\t\t" << setw(30) << left << n << setw(30) << p << setw(30) << d << "\n";
+                file1 << " " << c << "\t\t" << setw(30) << left << n << setw(30) << p << setw(30) << d << "\n";
                 cout << "\n\n\t\t\tRecord Edit Successfully...";
                 found++;
             }
@@ -369,8 +393,8 @@ void bill::edit()
         }
         file.close();
         file1.close();
-        remove("product.txt");
-        rename("product1.txt", "product.txt");
+        remove("PRODUCT_STORE.txt");
+        rename("PRODUCT1_STORE.txt", "PRODUCT_STORE.txt");
         if (found == 0)
         {
             cout << "\n\n Record can't found..";
@@ -378,7 +402,7 @@ void bill::edit()
     }
 }
 
-void bill::del()   // delete function of class bill
+void sell::del() // delete function of class sell
 {
     system("cls");
     fstream file, file1;
@@ -390,7 +414,7 @@ void bill::del()   // delete function of class bill
     cout << "\n\n Enter Product code you want to delete: ";
     cin >> p_c;
 
-    file.open("product.txt", ios::in);
+    file.open("PRODUCT_STORE.txt", ios::in);
     if (!file)
     {
         cout << "\n\n File opening error...";
@@ -398,7 +422,7 @@ void bill::del()   // delete function of class bill
 
     else
     {
-        file1.open("product1.txt", ios::app | ios::out);
+        file1.open("PRODUCT1_STORE.txt", ios::app | ios::out);
         file >> code >> name >> price >> discount;
         while (!file.eof())
         {
@@ -417,8 +441,8 @@ void bill::del()   // delete function of class bill
         file.close();
         file1.close();
 
-        remove("product.txt");
-        rename("product1.txt", "product.txt");
+        remove("PRODUCT_STORE.txt");
+        rename("PRODUCT1_STORE.txt", "PRODUCT_STORE.txt");
         if (found == 0)
         {
             cout << "\n\n Record can't found..";
@@ -426,7 +450,7 @@ void bill::del()   // delete function of class bill
     }
 }
 
-void bill::show()   // show function definition of class bill
+void sell ::show() // show function definition of class bill
 {
     system("cls");
     fstream file;
@@ -434,7 +458,7 @@ void bill::show()   // show function definition of class bill
     cout << "\n\n****************************************************************************************";
     cout << "\n\n\t\t\t\t Show Products List";
     cout << "\n\n****************************************************************************************";
-    file.open("product.txt", ios::in);
+    file.open("PRODUCT_STORE.txt", ios::in);
     if (!file)
     {
         cout << "\n\n File opening error";
@@ -454,33 +478,33 @@ void bill::show()   // show function definition of class bill
     }
 }
 
-void bill::list()
+void sell ::list()
 {
     fstream file;
-    file.open("product.txt", ios::in);
-    cout << "\n\n********************************************************************\n\n";
-    cout << "P.No.\t\t" << setw(20) << left << "PRODUCT NAME" << setw(30) << "PRICE OF PRODUCT";
-    cout << "\n\n********************************************************************\n\n";
+    file.open("PRODUCT_STORE.txt", ios::in);
+    cout << "\n\n********************************************************************************************\n\n";
+    cout << "P.No.\t\t" << setw(20) << left << "PRODUCT NAME" << setw(30) << "PRICE OF PRODUCT" << setw(30) <<"DISCOUNT"<<"\n";
+    cout << "\n\n********************************************************************************************\n\n";
 
     file >> code >> name >> price >> discount;
     while (!file.eof())
     {
-        cout << code << "\t\t" << setw(20) << left << name << setw(30) << price << "\n";
+        cout << code << "\t\t" << setw(20) << left << name << setw(30) << price << discount<<"\n";
         file >> code >> name >> price >> discount;
     }
     file.close();
 }
 
-void bill::invoice()
+void sell ::invoice()
 {
 ptr:
     system("cls");
-    fstream file;
+    fstream file,file2;
     char choice;
-    int o_c[50], o_q[50], c = 0;
+    int o_c[50], o_q[50], c = 0,emp = 0;
     float amt = 0, dis = 0, total = 0, r_amo = 0;
     cout << "\n\n\t\t\t\t Invoice Generate";
-    file.open("product.txt", ios::in);
+    file.open("PRODUCT_STORE.txt", ios::in);
     if (!file)
     {
         cout << "\n\n Data Base is Empty...";
@@ -517,7 +541,7 @@ ptr:
 
         for (int i = 0; i < c; i++)
         {
-            file.open("product.txt", ios::in);
+            file.open("PRODUCT_STORE.txt", ios::in);
             file >> code >> name >> price >> discount;
             while (!file.eof())
             {
@@ -531,20 +555,41 @@ ptr:
             }
             file.close();
         }
+
+        if (total == 0)
+        {
+            cout << "\n\n Product code not found ..... Please try again";
+            getch();
+            goto ptr;
+        }
+
+        if (is_emp() == 1)
+        {
+            emp = 1;
+            total = total - (total * 0.1);
+        }
         cout << "\n\n Total Amount: " << total;
         cout << "\n\n Enter Receive Amount: ";
         cin >> r_amo;
 
         system("cls");
+        file2.open("receipt.txt", ios::out);
         cout << "\n\t\t\t\t\t BILL RECEIPT";
+        file2 << "\n\n\t\t\t\t BILL RECEIPT";
+
         cout << "\n\n************************************************************************************************************";
         cout << "\nPr NO.\t\t" << setw(15) << left << "Pr Name" << setw(15) << "Quantity" << setw(15) << "Price" << setw(15) << "Amount" << setw(15)
              << "Amount After Discount";
         cout << "\n\n************************************************************************************************************";
 
+        file2 << "\n\n************************************************************************************************************";
+        file2 << "\nPr NO.\t\t" << setw(20) << left << "Pr Name" << setw(20) << "Quantity" << setw(20) << "Price" << setw(20) << "Amount" << setw(20)
+              << "total discount  amount";
+        file2 << "\n\n************************************************************************************************************";
+
         for (int i = 0; i < c; i++)
         {
-            file.open("product.txt", ios::in);
+            file.open("PRODUCT_STORE.txt", ios::in);
             file >> code >> name >> price >> discount;
             while (!file.eof())
             {
@@ -554,16 +599,24 @@ ptr:
                     dis = amt - (amt / 100 * discount);
                     cout << "\n"
                          << code << "\t\t" << setw(15) << left << name << setw(15) << o_q[i] << setw(15) << price << setw(15)
-                         << amt << setw(15) << dis << "\n";
+                         << amt << setw(15) << (amt - total) << "\n";
+
+                    file2 << "\n"
+                          << code << "\t\t" << setw(20) << left << name << setw(20) << o_q[i] << setw(20) << price << setw(20)
+                          << amt << setw(20) << (amt - total) << "\n";
                 }
                 file >> code >> name >> price >> discount;
             }
             file.close();
         }
         cout << "\n\n************************************************************************************************************";
+        file2 << "\n\n************************************************************************************************************";
         cout << "\n Subtotal: " << total;
+        file2 << "\n Subtotal: " << total;
         cout << "\n Receipt total: " << total;
+        file2 << "\n Receipt total: " << total;
         cout << "\n\n Total items: " << c;
+        file2 << "\n\n Total items: " << c;
         amt = 0;
 
         for (int i = 0; i < c; i++)
@@ -573,7 +626,17 @@ ptr:
         cout << "\n Total Qty sold: " << amt;
         cout << "\n\n Amount Received: " << r_amo;
         cout << "\n Change Given: " << (r_amo - total);
+        if(emp == 1)
+        cout<<"\t\t\tCONGRALUATION YOU GET 10% EXTRA DISCOUNT";
+
         cout << "\n\n***********************************THANKS FOR ORDER ****************************************************" << endl;
+        file2 << "\n Total Qty sold: " << amt;
+        file2 << "\n\n Amount Received: " << r_amo;
+        file2 << "\n Change Given: " << (r_amo - total);
+        file2<<"\t\t\tCONGRALUATION YOU GET 10% EXTRA DISCOUNT";
+        file2 << "\n\n***********************************THANKS FOR ORDER ****************************************************" << endl;
+        file2.close();
+        
         char more;
 
         cout << "\nDo you want to buy more products (Y/N): ";
@@ -596,8 +659,9 @@ ptr:
 
 int main()
 {
-    bill b;
+    supermarket b;
     b.menu();
 
     return 0;
+    
 }
